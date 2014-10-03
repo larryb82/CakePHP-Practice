@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `cake` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `cake`;
+CREATE DATABASE  IF NOT EXISTS `cake2` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `cake2`;
 -- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
--- Host: localhost    Database: cake
+-- Host: localhost    Database: cake2
 -- ------------------------------------------------------
 -- Server version	5.6.17
 
@@ -25,13 +25,14 @@ DROP TABLE IF EXISTS `posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `posts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) DEFAULT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
   `body` text,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,6 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1,'The title','This is the post body.','2008-02-13 18:34:55',NULL),(2,'A title once again','And the post body follows.','2008-02-13 18:34:56',NULL),(3,'Title strikes back','This is really exciting! Not.','2008-02-13 18:34:57',NULL);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,12 +52,14 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `role` varchar(45) DEFAULT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(128) DEFAULT NULL,
+  `password` varchar(128) DEFAULT NULL,
+  `email` varchar(128) DEFAULT NULL,
+  `role` varchar(64) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -68,16 +70,16 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'joenefloresca','$2a$10$pt92Hkd0sZaqg.aBhxnjLeite5Wnw00gZrA01p','admin','2014-10-02 12:05:01','2014-10-02 12:05:01');
+INSERT INTO `users` VALUES (1,'admin','e0ecaaf4aec98738cee57df483d56676c4cba35d','admin@gmail.com','king','2014-10-03 07:26:50','2014-10-03 07:26:50',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'cake'
+-- Dumping events for database 'cake2'
 --
 
 --
--- Dumping routines for database 'cake'
+-- Dumping routines for database 'cake2'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -89,4 +91,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-02 18:06:28
+-- Dump completed on 2014-10-03 14:22:01
